@@ -21,7 +21,7 @@ public class Main {
         toyList.add(toy5);
 
         try {
-            Interface.MainInterface.mainMenu(toyList, scanner);
+            Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

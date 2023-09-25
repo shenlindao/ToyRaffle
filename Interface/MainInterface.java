@@ -2,11 +2,12 @@ package Interface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Scanner;
 import Classes.Toy;
 
 public class MainInterface {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("MENU");
@@ -22,22 +23,13 @@ public class MainInterface {
             int menuChoise = Integer.parseInt(scanner.nextLine());
             switch (menuChoise) {
                 case 1:
-                    // prizeDrawing(toyList, scanner);
-                    System.out.println("developing\n");
-                    System.out.println("please try later...\n");
-                    PartOfMenu.showPart(toyList, scanner);
+                    Prize.prizeDrawing(toyList, scanner, prizeQueue);
                     break;
                 case 2:
                     // showPrizeList(toyList, scanner);
-                    System.out.println("developing\n");
-                    System.out.println("please try later...\n");
-                    PartOfMenu.showPart(toyList, scanner);
                     break;
                 case 3:
-                    // getPrizeToy(toyList, scanner);
-                    System.out.println("developing\n");
-                    System.out.println("please try later...\n");
-                    PartOfMenu.showPart(toyList, scanner);
+                    Prize.getPrizeToy(toyList, scanner, prizeQueue);
                     break;
                 case 4:
                     NewToy.addNewToy(toyList, scanner);
