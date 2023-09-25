@@ -1,3 +1,4 @@
+package Classes;
 public class Toy {
     private int id;
     private String name;

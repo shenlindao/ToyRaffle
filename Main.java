@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import Classes.Toy;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -20,7 +21,7 @@ public class Main {
         toyList.add(toy5);
 
         try {
-            Interface.mainMenu(toyList, scanner);
+            Interface.MainInterface.mainMenu(toyList, scanner);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
