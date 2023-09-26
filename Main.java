@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import Classes.Toy;
 
@@ -19,6 +21,8 @@ public class Main {
         toyList.add(toy3);
         toyList.add(toy4);
         toyList.add(toy5);
+
+        Queue<Toy> prizeQueue = new LinkedList<Toy>();
 
         try {
             Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue);

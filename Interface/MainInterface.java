@@ -26,7 +26,7 @@ public class MainInterface {
                     Prize.prizeDrawing(toyList, scanner, prizeQueue);
                     break;
                 case 2:
-                    // showPrizeList(toyList, scanner);
+                    Prize.showPrizeList(toyList, scanner, prizeQueue);
                     break;
                 case 3:
                     Prize.getPrizeToy(toyList, scanner, prizeQueue);

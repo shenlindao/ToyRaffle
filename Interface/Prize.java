@@ -2,7 +2,6 @@ package Interface;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
@@ -30,7 +29,7 @@ public class Prize {
             int menuChoise = Integer.parseInt(scanner.nextLine());
             switch (menuChoise) {
                 case 1:
-                    startDrawing(toyList, scanner);
+                    startDrawing(toyList, scanner, prizeQueue);
                     break;
                 case 2:
                     getPrizeToy(toyList, scanner, prizeQueue);
@@ -49,7 +48,7 @@ public class Prize {
         scanner.close();
     }
 
-    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner)
+    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
             throws IOException, InterruptedException {
         // взять тойлист
         // выбрать рандомную игрушку
@@ -59,8 +58,8 @@ public class Prize {
         // вернуться
         Toy prizeToy = anyToy(toyList);
         System.out.println(prizeToy);
-        Queue<Toy> prizeQueue = new LinkedList<Toy>();
         prizeQueue.add(prizeToy);
+        PartOfMenu.showPart(toyList, scanner);
     }
 
     public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
@@ -73,6 +72,7 @@ public class Prize {
         Object firstToy = prizeQueue.element();
         System.out.println(firstToy);
         prizeQueue.remove(firstToy);
+        PartOfMenu.showPart(toyList, scanner);
 
     }
 
@@ -82,5 +82,11 @@ public class Prize {
         int index = randomGenerator.nextInt(toyList.size());
         Toy prizeToy = toyList.get(index);
         return prizeToy;
+    }
+
+    public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+            throws IOException, InterruptedException {
+        System.out.println(prizeQueue);
+        PartOfMenu.showPart(toyList, scanner);
     }
 }
