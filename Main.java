@@ -24,7 +24,7 @@ public class Main {
         toyList.add(toy5);
 
         Queue<Toy> prizeQueue = new LinkedList<Toy>();
-        
+
         String pathProject = System.getProperty("user.dir");
         String prizeQueueFilePath = pathProject.concat("\\prizeQueue.txt");
 

@@ -7,12 +7,14 @@ import java.util.Scanner;
 import Classes.Toy;
 
 public class PartOfMenu {
-    public static void partMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void partMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void showPart(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void showPart(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         System.out.println("\nPress any to return to main menu");
         System.out.println();

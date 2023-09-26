@@ -7,7 +7,8 @@ import java.util.Scanner;
 import Classes.Toy;
 
 public class MainInterface {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("MENU");

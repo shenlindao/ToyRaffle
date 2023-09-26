@@ -5,18 +5,19 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
-import java.io.File;
 import java.io.FileWriter;
 
 import Classes.Toy;
 
 public class Prize {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         prizeDrawing(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void prizeDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void prizeDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("PRIZE DRAWING");
@@ -50,7 +51,8 @@ public class Prize {
         scanner.close();
     }
 
-    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         Toy prizeToy = anyToy(toyList);
         Toy queueToy = new Toy(prizeToy.getId(), prizeToy.getName(), 1, prizeToy.getFrequency());
@@ -66,7 +68,8 @@ public class Prize {
         PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         Toy firstToy = prizeQueue.element();
         try {
@@ -89,7 +92,8 @@ public class Prize {
         return prizeToy;
     }
 
-    public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         System.out.println(prizeQueue);
         PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);

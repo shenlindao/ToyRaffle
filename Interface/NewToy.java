@@ -7,12 +7,14 @@ import java.util.Scanner;
 import Classes.Toy;
 
 public class NewToy {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         addNewToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void addNewToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
+    public static void addNewToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+            String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         int quantity = 0;
