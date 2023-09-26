@@ -50,34 +50,35 @@ public class Prize {
 
     public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
             throws IOException, InterruptedException {
-        // взять тойлист
-        // выбрать рандомную игрушку
-        // показать её
-        // добавить в очередь на выдачу
-        // удалить из основого списка
-        // вернуться
         Toy prizeToy = anyToy(toyList);
-        System.out.println(prizeToy);
-        prizeQueue.add(prizeToy);
-        PartOfMenu.showPart(toyList, scanner);
+        Toy queueToy = new Toy(prizeToy.getId(), prizeToy.getName(), 1, prizeToy.getFrequency());
+        if (prizeToy.getQuantity() == 1) {
+            toyList.remove(prizeToy);
+        } else {
+            Toy toy = toyList.get(prizeToy.getId() - 1);
+            int quantity = toy.getQuantity();
+            toy.setQuantity(quantity - 1);
+        }
+        prizeQueue.add(queueToy);
+        System.out.println(queueToy);
+        PartOfMenu.showPart(toyList, scanner, prizeQueue);
     }
 
     public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
             throws IOException, InterruptedException {
-        //  взять очередь    
-        //  выдать игрушку (показать)
-        //  удалить из очереди
-        //  вернуться
-
+        // взять очередь
+        // выдать игрушку (показать)
+        // удалить из очереди
+        // вернуться
+        
         Object firstToy = prizeQueue.element();
         System.out.println(firstToy);
         prizeQueue.remove(firstToy);
-        PartOfMenu.showPart(toyList, scanner);
+        PartOfMenu.showPart(toyList, scanner, prizeQueue);
 
     }
 
-    public static Toy anyToy(ArrayList<Toy> toyList)
-    {
+    public static Toy anyToy(ArrayList<Toy> toyList) {
         Random randomGenerator = new Random();
         int index = randomGenerator.nextInt(toyList.size());
         Toy prizeToy = toyList.get(index);
@@ -87,6 +88,6 @@ public class Prize {
     public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
             throws IOException, InterruptedException {
         System.out.println(prizeQueue);
-        PartOfMenu.showPart(toyList, scanner);
+        PartOfMenu.showPart(toyList, scanner, prizeQueue);
     }
 }

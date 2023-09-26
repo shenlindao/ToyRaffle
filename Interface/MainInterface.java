@@ -32,7 +32,7 @@ public class MainInterface {
                     Prize.getPrizeToy(toyList, scanner, prizeQueue);
                     break;
                 case 4:
-                    NewToy.addNewToy(toyList, scanner);
+                    NewToy.addNewToy(toyList, scanner, prizeQueue);
                     break;
                 default:
                     System.out.println("\nHave a good day!\n");

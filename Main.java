@@ -12,8 +12,8 @@ public class Main {
         Toy toy1 = new Toy(1, "Car", 5, 30);
         Toy toy2 = new Toy(2, "Doll", 7, 20);
         Toy toy3 = new Toy(3, "Frog", 50, 60);
-        Toy toy4 = new Toy(4, "SoftBear", 2, 15);
-        Toy toy5 = new Toy(5, "Robot", 2, 5);
+        Toy toy4 = new Toy(4, "SoftBear", 20, 15);
+        Toy toy5 = new Toy(5, "Robot", 15, 5);
 
         ArrayList<Toy> toyList = new ArrayList<>();
         toyList.add(toy1);
