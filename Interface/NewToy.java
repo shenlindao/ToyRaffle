@@ -24,14 +24,27 @@ public class NewToy {
         String name = scanner.nextLine();
         System.out.println("Input quantity: ");
         try {
+            int temp1 = Integer.parseInt(scanner.nextLine());
+            if (temp1 < 1) {
+                System.out.println("\nThis quantity out of range");
+                PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
+            } else {
+                quantity = temp1;
+            }
             quantity = Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
             System.out.println("\nYou need to input an integer");
             PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
         }
-        System.out.println("Input frequency dropout: ");
+        System.out.println("Input frequency dropout (1-100): ");
         try {
-            frequency = Integer.parseInt(scanner.nextLine());
+            int temp2 = Integer.parseInt(scanner.nextLine());
+            if (temp2 < 1 || temp2 > 100) {
+                System.out.println("\nThis frequency out of range");
+                PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
+            } else {
+                frequency = temp2;
+            }
         } catch (Exception e) {
             System.out.println("\nYou need to input an integer");
             PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
