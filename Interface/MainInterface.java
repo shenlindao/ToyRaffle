@@ -7,7 +7,7 @@ import java.util.Scanner;
 import Classes.Toy;
 
 public class MainInterface {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("MENU");
@@ -23,16 +23,16 @@ public class MainInterface {
             int menuChoise = Integer.parseInt(scanner.nextLine());
             switch (menuChoise) {
                 case 1:
-                    Prize.prizeDrawing(toyList, scanner, prizeQueue);
+                    Prize.prizeDrawing(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 case 2:
-                    Prize.showPrizeList(toyList, scanner, prizeQueue);
+                    Prize.showPrizeList(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 case 3:
-                    Prize.getPrizeToy(toyList, scanner, prizeQueue);
+                    Prize.getPrizeToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 case 4:
-                    NewToy.addNewToy(toyList, scanner, prizeQueue);
+                    NewToy.addNewToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 default:
                     System.out.println("\nHave a good day!\n");

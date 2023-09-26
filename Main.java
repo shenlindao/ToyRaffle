@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner scanner = new Scanner(System.in);
+
         Toy toy1 = new Toy(1, "Car", 5, 30);
         Toy toy2 = new Toy(2, "Doll", 7, 20);
         Toy toy3 = new Toy(3, "Frog", 50, 60);
@@ -23,9 +24,12 @@ public class Main {
         toyList.add(toy5);
 
         Queue<Toy> prizeQueue = new LinkedList<Toy>();
+        
+        String pathProject = System.getProperty("user.dir");
+        String prizeQueueFilePath = pathProject.concat("\\prizeQueue.txt");
 
         try {
-            Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue);
+            Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue, prizeQueueFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

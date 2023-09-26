@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
 
 import Classes.Toy;
 
 public class Prize {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
-        prizeDrawing(toyList, scanner, prizeQueue);
+        prizeDrawing(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void prizeDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void prizeDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("PRIZE DRAWING");
@@ -29,13 +31,13 @@ public class Prize {
             int menuChoise = Integer.parseInt(scanner.nextLine());
             switch (menuChoise) {
                 case 1:
-                    startDrawing(toyList, scanner, prizeQueue);
+                    startDrawing(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 case 2:
-                    getPrizeToy(toyList, scanner, prizeQueue);
+                    getPrizeToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 case 3:
-                    Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue);
+                    Interface.MainInterface.mainMenu(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 default:
                     System.out.println("\nHave a good day!\n");
@@ -48,7 +50,7 @@ public class Prize {
         scanner.close();
     }
 
-    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void startDrawing(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
         Toy prizeToy = anyToy(toyList);
         Toy queueToy = new Toy(prizeToy.getId(), prizeToy.getName(), 1, prizeToy.getFrequency());
@@ -60,21 +62,23 @@ public class Prize {
             toy.setQuantity(quantity - 1);
         }
         prizeQueue.add(queueToy);
-        System.out.println(queueToy);
-        PartOfMenu.showPart(toyList, scanner, prizeQueue);
+        System.out.println("\nCongratulations! You have won the " + queueToy.getName());
+        PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 
-    public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void getPrizeToy(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
-        // взять очередь
-        // выдать игрушку (показать)
-        // удалить из очереди
-        // вернуться
-        
-        Object firstToy = prizeQueue.element();
+        Toy firstToy = prizeQueue.element();
+        try {
+            FileWriter writer = new FileWriter(prizeQueueFilePath, true);
+            writer.write(firstToy.getName() + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Ошибка записи в файл");
+        }
         System.out.println(firstToy);
         prizeQueue.remove(firstToy);
-        PartOfMenu.showPart(toyList, scanner, prizeQueue);
+        PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
 
     }
 
@@ -85,9 +89,9 @@ public class Prize {
         return prizeToy;
     }
 
-    public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue)
+    public static void showPrizeList(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue, String prizeQueueFilePath)
             throws IOException, InterruptedException {
         System.out.println(prizeQueue);
-        PartOfMenu.showPart(toyList, scanner, prizeQueue);
+        PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
     }
 }
