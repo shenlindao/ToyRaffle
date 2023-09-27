@@ -10,9 +10,9 @@ public class Main {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner scanner = new Scanner(System.in);
 
-        Toy toy1 = new Toy(1, "Car", 5, 30);
-        Toy toy2 = new Toy(2, "Doll", 7, 20);
-        Toy toy3 = new Toy(3, "Frog", 50, 60);
+        Toy toy1 = new Toy(1, "Car", 5, 9);
+        Toy toy2 = new Toy(2, "Doll", 7, 10);
+        Toy toy3 = new Toy(3, "Frog", 50, 26);
         Toy toy4 = new Toy(4, "SoftBear", 20, 15);
         Toy toy5 = new Toy(5, "Robot", 15, 5);
 

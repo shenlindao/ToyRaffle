@@ -86,9 +86,18 @@ public class Prize {
     }
 
     public static Toy anyToy(ArrayList<Toy> toyList) {
-        Random randomGenerator = new Random();
-        int index = randomGenerator.nextInt(toyList.size());
-        Toy prizeToy = toyList.get(index);
+        int random = (int) (Math.random() * 100);
+        int frequencyLimit = 0;
+        Toy prizeToy = null;
+        for (int i = 0; i < toyList.size(); i++) {
+            if (random >= frequencyLimit && random <= (int) toyList.get(i).getFrequency()) {
+                System.out.println("Это игрушка с индексом " + i);
+                prizeToy = toyList.get(i);
+                return prizeToy;
+            } else {
+                frequencyLimit += (int) toyList.get(i).getFrequency();
+            }
+        }
         return prizeToy;
     }
 
