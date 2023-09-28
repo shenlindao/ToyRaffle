@@ -7,7 +7,7 @@ import java.util.Scanner;
 import Classes.Toy;
 
 public class PartOfMenu {
-    public static void partMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+    public static void main(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
             String prizeQueueFilePath)
             throws IOException, InterruptedException {
         showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);

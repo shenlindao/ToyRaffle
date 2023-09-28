@@ -3,14 +3,13 @@ package Interface;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
-import java.util.Random;
 import java.util.Scanner;
 import java.io.FileWriter;
 
 import Classes.Toy;
 
 public class Prize {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+    public static void main(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
             String prizeQueueFilePath)
             throws IOException, InterruptedException {
         prizeDrawing(toyList, scanner, prizeQueue, prizeQueueFilePath);
@@ -55,6 +54,10 @@ public class Prize {
             String prizeQueueFilePath)
             throws IOException, InterruptedException {
         Toy prizeToy = anyToy(toyList);
+        if (prizeToy == null) {
+            System.out.println("\nSorry you lose :( try again later");
+            PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
+        }
         Toy queueToy = new Toy(prizeToy.getId(), prizeToy.getName(), 1, prizeToy.getFrequency());
         if (prizeToy.getQuantity() == 1) {
             toyList.remove(prizeToy);
@@ -77,7 +80,7 @@ public class Prize {
             writer.write(firstToy.getName() + "\n");
             writer.close();
         } catch (IOException e) {
-            System.out.println("Ошибка записи в файл");
+            System.out.println("Error writing to file");
         }
         System.out.println(firstToy);
         prizeQueue.remove(firstToy);
@@ -87,11 +90,11 @@ public class Prize {
 
     public static Toy anyToy(ArrayList<Toy> toyList) {
         int random = (int) (Math.random() * 100);
+        System.out.println("You random number: " + random);
         int frequencyLimit = 0;
         Toy prizeToy = null;
         for (int i = 0; i < toyList.size(); i++) {
             if (random >= frequencyLimit && random <= (int) toyList.get(i).getFrequency()) {
-                System.out.println("Это игрушка с индексом " + i);
                 prizeToy = toyList.get(i);
                 return prizeToy;
             } else {

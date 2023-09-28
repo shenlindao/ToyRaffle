@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
 import Classes.Toy;
+import Service.Frequency;
 
 public class NewToy {
-    public static void mainMenu(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
+    public static void main(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
             String prizeQueueFilePath)
             throws IOException, InterruptedException {
         addNewToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
@@ -17,18 +18,29 @@ public class NewToy {
             String prizeQueueFilePath)
             throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        String name = null;
         int quantity = 0;
         int frequency = 0;
         System.out.println("ADDING NEW TOY\n");
 
-        int emptyFrequency = emptyFrequency(toyList, scanner, prizeQueue, prizeQueueFilePath);
+        int emptyFrequency = Frequency.emptyFrequency(toyList, scanner, prizeQueue, prizeQueueFilePath);
         if (emptyFrequency == 0) {
             System.out.println("All slots are occupied, please change frequency in the list and try again");
             PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
         }
-        
         System.out.println("Input toy's name: ");
-        String name = scanner.nextLine();
+        try {
+            String temp = scanner.nextLine();
+            if (temp == "") {
+                System.out.println("\nName can't be empty");
+                PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
+            } else {
+                name = temp;
+            }
+        } catch (Exception e) {
+            System.out.println("\nSomthing wrong");
+            PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
+        }
         System.out.println("Input quantity: ");
         try {
             int temp1 = Integer.parseInt(scanner.nextLine());
@@ -61,16 +73,5 @@ public class NewToy {
         toyList.add(newToy);
         System.out.println("\nThe toy has been successfully added");
         PartOfMenu.showPart(toyList, scanner, prizeQueue, prizeQueueFilePath);
-    }
-
-    public static int emptyFrequency(ArrayList<Toy> toyList, Scanner scanner, Queue<Toy> prizeQueue,
-            String prizeQueueFilePath)
-            throws IOException, InterruptedException {
-        int count = 0;
-        for (Toy toy : toyList) {
-            count = count + toy.getFrequency();
-        }
-        int emptyFrequency = 100 - count;
-        return emptyFrequency;
     }
 }

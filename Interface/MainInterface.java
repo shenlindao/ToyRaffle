@@ -17,6 +17,7 @@ public class MainInterface {
         System.out.println("2 - Show the prize list");
         System.out.println("3 - Get a prize toy");
         System.out.println("4 - Add new toy");
+        System.out.println("5 - Change frequency");
         System.out.println("else key - exit program");
         System.out.println();
         System.out.println("Select the number: ");
@@ -34,6 +35,9 @@ public class MainInterface {
                     break;
                 case 4:
                     NewToy.addNewToy(toyList, scanner, prizeQueue, prizeQueueFilePath);
+                    break;
+                case 5:
+                    Edit.changeFrequency(toyList, scanner, prizeQueue, prizeQueueFilePath);
                     break;
                 default:
                     System.out.println("\nHave a good day!\n");
